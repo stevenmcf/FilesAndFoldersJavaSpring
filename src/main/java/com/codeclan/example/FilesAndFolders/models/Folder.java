@@ -1,10 +1,8 @@
 package com.codeclan.example.FilesAndFolders.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,19 +16,21 @@ public class Folder {
     @Column(name="title")
     private String title;
 
-    @JsonIgnoreProperties("folders")
-    @OneToMany(mappedBy = "folder", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "folder")
+//    fetch = FetchType.LAZY - what is this and when to use ?????
+    @JsonIgnoreProperties({"folders"})
     private List<File>files;
 
-    @JsonIgnoreProperties("folders")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"folders"})
     private User user;
 
     public Folder(String title, User user) {
         this.title = title;
         this.user = user;
-        this.files = new ArrayList<File>();
+        this.files = new ArrayList<>();
     }
 
     public Folder(){

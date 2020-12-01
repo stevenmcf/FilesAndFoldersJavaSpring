@@ -18,7 +18,8 @@ public class User {
     private String name;
 
     @JsonIgnoreProperties({"users"})
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
+//    fetch = FetchTyp.LAZY - what and when to use ? real example - request tomorrow.
     private List<Folder> folders;
 
     public User(String name){

@@ -32,18 +32,29 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args){
         User user1 = new User("Json Jsonson");
         userRepository.save(user1);
+        User user2 = new User("Graham Grahamson");
+        userRepository.save(user2);
 
-        Folder tunes = new Folder ("Spotify Downloads", user1);
-        folderRepository.save(tunes);
+        Folder project1 = new Folder ("VUE", user1);
+        folderRepository.save(project1);
 
-        Folder applications = new Folder ("soundcloud", user1);
-        folderRepository.save(applications);
+        Folder project2 = new Folder ("REACT", user1);
+        folderRepository.save(project2);
 
-        File music = new File("Deacon Blue Greatest Hits", "mp4", 600.5, tunes );
-        fileRepository.save(music);
-        File ide = new File("intellij", ".exe", 250, applications );
-        fileRepository.save(ide);
+        File api1 = new File("api1", "JSON", 600.5, project1 );
+        fileRepository.save(api1);
+        File api2 = new File("api2", "xml", 980.01, project1 );
+        fileRepository.save(api2);
+        File api3 = new File("api3", "JSON", 250, project2 );
+        fileRepository.save(api3);
 
+        user1.addFolders(project1);
+        user2.addFolders(project2);
+        user2.addFolders(project1);
+
+        project1.addFile(api1);
+        project1.addFile(api2);
+        project2.addFile(api3);
 
 
     }
