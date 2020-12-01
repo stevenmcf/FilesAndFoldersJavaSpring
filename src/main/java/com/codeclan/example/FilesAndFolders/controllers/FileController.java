@@ -16,20 +16,38 @@ public class FileController {
     @Autowired
     FileRepository fileRepository;
 
+//    @GetMapping(value = "/raids")
+//    public ResponseEntity<List<Raid>> getAllRaids(){
+//        return new ResponseEntity<>(raidRepository.findAll(), HttpStatus.OK);
+//    }
+
     @GetMapping(value="/files")
     public ResponseEntity<List<File>>getAllFiles(){
         return new ResponseEntity<>(fileRepository.findAll(), HttpStatus.OK);
     }
 
+//    @GetMapping(value = "/raids/{id}")
+//    public ResponseEntity<Optional<Raid>> getRaid(@PathVariable Long id){
+//        return new ResponseEntity<>(raidRepository.findById(id), HttpStatus.OK);
+//    }
     @GetMapping(value="files/{id}")
-    public ResponseEntity getFile(@PathVariable Long id){
-        return new ResponseEntity(fileRepository.findById(id), HttpStatus.OK);
+    public ResponseEntity<Optional<File>> getFile(@PathVariable Long id){
+        return new ResponseEntity<>(fileRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "files")
-    public ResponseEntity<File> postFile(@RequestBody File file){
-        fileRepository.save(file);
-        return new ResponseEntity<>(file, HttpStatus.CREATED);
+//    @PostMapping(value = "/raids")
+//    public ResponseEntity<Raid> createRaid(@RequestBody Raid raid){
+//        Raid newRaid = raidRepository.save(raid);
+//        return new ResponseEntity<>(newRaid, HttpStatus.CREATED);
+//    }
+    @PostMapping(value = "/files")
+    public ResponseEntity<File> createFile(@RequestBody File file){
+        File newFile = fileRepository.save(file);
+        return new ResponseEntity<>(newFile, HttpStatus.CREATED);
     }
+
+
+
+
 
 }

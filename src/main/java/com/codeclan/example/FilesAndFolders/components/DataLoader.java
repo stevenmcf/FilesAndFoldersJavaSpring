@@ -41,11 +41,11 @@ public class DataLoader implements ApplicationRunner {
         Folder project2 = new Folder ("REACT", user1);
         folderRepository.save(project2);
 
-        File api1 = new File("api1", "JSON", 600.5, project1 );
+        File api1 = new File("api 1", "JSON", 600.5, project1 );
         fileRepository.save(api1);
-        File api2 = new File("api2", "xml", 980.01, project1 );
+        File api2 = new File("api 2", "xml", 980.01, project1 );
         fileRepository.save(api2);
-        File api3 = new File("api3", "JSON", 250, project2 );
+        File api3 = new File("api 3", "JSON", 250, project2 );
         fileRepository.save(api3);
 
         user1.addFolders(project1);
